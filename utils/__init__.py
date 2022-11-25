@@ -46,7 +46,7 @@ flow = Flow.from_client_secrets_file(
         "https://www.googleapis.com/auth/userinfo.profile",
         "openid"
     ],
-    redirect_uri = "https://super-orgcontact-369616.uc.r.appspot.com/users/callback"
+    redirect_uri = "https://super-orgcontact-369704.uc.r.appspot.com/users/callback"
 )
 
 
