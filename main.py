@@ -34,7 +34,7 @@ def auth_google():
 @app.route('/users/callback', methods = ["GET"])
 def callback():
     data = callback_google()
-    return redirect(f"http://localhost:3000/login?token={data['token']}&expiry={data['expiry']}&picture={data['user_image']}&user_name={data['user_name']}")
+    return redirect(f"https://super-orgcontact-369616.web.app/login?token={data['token']}&expiry={data['expiry']}&picture={data['user_image']}&user_name={data['user_name']}")
 
 @app.route('/contacts/get', methods = ["POST"])
 def get_contacts():
