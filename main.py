@@ -18,7 +18,19 @@ app.config.from_object(app_config[os.getenv("FLASK_ENV")])
 if __name__ == "__main__":
     app.run()
 
-@app.route('/', methods = ["GET"])
-def hello():
+@app.route('/users/auth/google', methods = ["POST"])
+def auth_google():
 
-    print("Hello World!")
+    authorization_url, state = flow.authorization_url()
+    session["state"] = state
+
+    return Response(
+        response=json.dumps({'url':authorization_url}),
+        status=200,
+        mimetype='application/json'
+    )  
+
+@app.route('/users/callback', methods = ["GET"])
+def callback():
+    data = callback_google()
+    return redirect(f"http://localhost:8080/login?token={data['token']}&expiry={data['expiry']}&picture={data['user_image']}&user_name={data['user_name']}")

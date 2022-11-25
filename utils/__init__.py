@@ -1,0 +1,51 @@
+import requests
+import os
+from flask import request, current_app
+from flask.globals import session
+from google import auth
+from google.oauth2 import id_token
+from google_auth_oauthlib.flow import Flow
+
+
+
+def callback_google():
+
+    flow.fetch_token(authorization_response = request.url)
+    credentials = flow.credentials
+    request_session = requests.session()
+    token_google = auth.transport.requests.Request(session=request_session)
+    user_google_dict = id_token.verify_oauth2_token(
+        id_token = credentials.id_token,
+        request=token_google,
+        audience=os.getenv("GOOGLE_CLIENT_ID"),
+        clock_skew_in_seconds=0
+    )
+
+    data_auth = {
+        "user_name": "",
+        "user_image": "",
+        "token": "",
+        "expiry": ""
+    }
+
+    data_auth['user_name'] = user_google_dict['name']
+    data_auth['user_image'] = user_google_dict['picture']
+    data_auth['token'] = credentials.token
+    data_auth['expiry'] = credentials.expiry
+
+    return data_auth
+
+
+
+
+flow = Flow.from_client_secrets_file(
+    client_secrets_file="database/client_secret.json",
+    scopes=[
+        "https://www.googleapis.com/auth/contacts.readonly",
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "openid"
+    ],
+    redirect_uri = "http://localhost:5000/users/callback"
+)
+
+
