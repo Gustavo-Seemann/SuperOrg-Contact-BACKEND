@@ -9,11 +9,17 @@ from werkzeug.utils import redirect
 from waitress import serve
 from config import app_config
 from utils import exist_key, get_user_contacts
+from flask_cors import CORS
 
 
 app = Flask(__name__)
 
 app.config.from_object(app_config[os.getenv("FLASK_ENV")])
+
+CORS(app)
+app.config["Access-Control-Allow-Origin"] = "*"
+app.config["Access-Control-Allow-Headers"] = "Content-Type"
+
 
 
 if __name__ == "__main__":
