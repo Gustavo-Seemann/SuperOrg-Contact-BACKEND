@@ -1,4 +1,9 @@
 <img src="https://user-images.githubusercontent.com/101838119/203919902-4f25739a-29ff-4dee-adf1-b2b681246873.png">
+
+<p align="center">
+<a href="https://super-orgcontact-369704.uc.r.appspot.com"><img src="https://img.shields.io/badge/API-online-brightgreen"></a>
+</p>
+
 <h1>⚙️ Super OrgContact API </h1>
 
 <p> Este repositório foi desenvolvido em Flask para realizar as requisições do Frontend da aplicação Super OrgContact. </P>
